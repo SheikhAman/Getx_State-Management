@@ -1,41 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:getx/detail_screen.dart';
-import 'package:getx/logic_controller.dart';
 import 'package:get/get.dart';
+import 'package:getx/logic_controller.dart';
 
-class HomeScreen extends StatelessWidget {
+class MultiplyCount extends StatelessWidget {
   final MyLogicController _logicController = Get.put(MyLogicController());
+  MultiplyCount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeScreen'),
+        title: Text('Multiply Count'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Obx(
-              () => Text('Counter ${_logicController.count}'),
+              () => Text('Counter: ${_logicController.count}'),
             ),
             Obx(
-              () => Text('Counter ${_logicController.doubleCount}'),
+              () => Text('DoubleCounter: ${_logicController.doubleCount}'),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Get.to(DetailScreen());
-              },
-              child: Text('goto DetailScreen'),
-            ),
+            Obx(() {
+              return Text(
+                  'MultiplyCounter : ${_logicController.multiplyCount}  ');
+            }),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _logicController.counter();
+          _logicController.multiplyCounter();
         },
-        child: Icon(Icons.add),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/logic_controller.dart';
+import 'package:getx/multiply_screen.dart';
 
 class DetailScreen extends StatelessWidget {
   final MyLogicController _logicController = Get.put(MyLogicController());
@@ -14,6 +15,7 @@ class DetailScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Obx(
               () => Text('Counter ${_logicController.count}'),
@@ -22,11 +24,19 @@ class DetailScreen extends StatelessWidget {
               () => Text('Counter ${_logicController.doubleCount}'),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('Go Back to Home Screen'),
+              onPressed: () {
+                Get.to(MultiplyCount());
+              },
+              child: Text('Go Back to Multiply Count'),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _logicController.doubleCounter();
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
